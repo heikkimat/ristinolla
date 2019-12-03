@@ -41,12 +41,7 @@ const checkForTwo = (mark) => {
             qNum = qN;
         }
     });
-    return {
-        succ: success,
-        qNum: qNum,
-        succ2: success,
-        qNum2: qNum
-    };
+    return [success,qNum];
 }
 
 const opponentChoice = () => {
@@ -57,13 +52,13 @@ const opponentChoice = () => {
         return qNumId(emptyQs()[Math.floor(Math.random()*emptyQs().length)]);
     }
     //1. can I win?
-    const {succ, qNum} = checkForTwo('o');
-    if(succ)
-        return qNum;
+    const [succO, qNumO] = checkForTwo('o');
+    if(succO)
+        return qNumO;
     //2. can you win?
-    const {succ2, qNum2} = checkForTwo('x');
-    if(succ2)
-        return qNum2;
+    const [succX, qNumX] = checkForTwo('x');
+    if(succX)
+        return qNumX;
     //3. is center free
     if(typeof emptyQs().find(element => qNumId(element) === 4) !== 'undefined')
         return 4;
